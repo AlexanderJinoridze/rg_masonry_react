@@ -19,6 +19,7 @@ export default function RGMasonry({ columns, children }: RGMasonryProps): any {
 
     const blocks = () => {
         let currentItemId = 0;
+
         return gridMap.map((blockType) => {
             let increment = 0;
 

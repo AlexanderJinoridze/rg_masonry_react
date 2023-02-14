@@ -1,5 +1,3 @@
-console.log("RGGRID!!!!");
-
 type block = "square" | "horizontals" | "vertical" | "double";
 type halfWidthBlock = "vertical" | "double";
 type twoItemBlock = "horizontals" | "double";
