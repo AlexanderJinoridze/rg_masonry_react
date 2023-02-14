@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement, useEffect, useMemo, useState } from "react";
 
 import Block from "./Block";
 import generateGridMap from "../gridMapGenerate";
@@ -17,7 +17,7 @@ export default function RGMasonry({ columns, children }: RGMasonryProps): any {
         setWidth(columns * 150);
     }, [columns, children.length]);
 
-    const blocks = () => {
+    const blocks = useMemo(() => {
         let currentItemId = 0;
 
         return gridMap.map((blockType) => {
@@ -42,11 +42,11 @@ export default function RGMasonry({ columns, children }: RGMasonryProps): any {
                 />
             );
         });
-    };
+    }, [gridMap]);
 
     return (
         <div id="app" style={{ width }}>
-            {blocks()}
+            {blocks}
         </div>
     );
 }
