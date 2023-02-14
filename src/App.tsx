@@ -23,6 +23,16 @@ function App() {
             });
     };
 
+    const handleColumnChange = (e: any) =>
+        setColumns(parseInt(e?.target?.value));
+
+    const handkeItemChange = (e: any) => {
+        let newDataLength = parseInt(e?.target?.value);
+
+        setDataLength(newDataLength);
+        setData(generateDummyData(newDataLength));
+    };
+
     useEffect(() => {
         setData(generateDummyData(dataLength));
     }, []);
@@ -41,7 +51,7 @@ function App() {
                         className="input"
                         min={1}
                         value={columns}
-                        onChange={(e) => setColumns(parseInt(e?.target?.value))}
+                        onChange={handleColumnChange}
                     />
                 </div>
                 <div className="fieldset">
@@ -54,12 +64,7 @@ function App() {
                         className="input"
                         min={1}
                         value={dataLength}
-                        onChange={(e) => {
-                            let newDataLength = parseInt(e?.target?.value);
-
-                            setDataLength(newDataLength);
-                            setData(generateDummyData(newDataLength));
-                        }}
+                        onChange={handkeItemChange}
                     />
                 </div>
                 <div className="fieldset">

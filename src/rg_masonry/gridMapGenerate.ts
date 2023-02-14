@@ -1,7 +1,7 @@
+console.log("RGGRID!!!!");
+
 type block = "square" | "horizontals" | "vertical" | "double";
-type fullWidthBlock = "square" | "horizontals";
 type halfWidthBlock = "vertical" | "double";
-type oneItemBlock = "square" | "vertical";
 type twoItemBlock = "horizontals" | "double";
 
 const getRandomNumber = (from = 0, to = 1) => {

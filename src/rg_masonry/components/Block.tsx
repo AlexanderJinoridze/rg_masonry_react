@@ -1,5 +1,4 @@
-import React, { ReactElement, useEffect, useState } from "react";
-import { v4 as uuid } from "uuid";
+import React, { ReactElement } from "react";
 
 interface blockElement {
     blockType: string;
@@ -7,19 +6,15 @@ interface blockElement {
 }
 
 export default function Block({ blockType, items }: blockElement) {
-    const [content, setContent] = useState<any | null>(null);
-
-    useEffect(() => {
-        let newContent = items.map((item) => {
+    const content = () => {
+        return items.map((item) => {
             return (
-                <div key={uuid()} className="item">
+                <div key={item.props.id} className="item">
                     {item}
                 </div>
             );
         });
+    };
 
-        setContent(newContent);
-    }, [items]);
-
-    return <div className={blockType}>{content}</div>;
+    return <div className={blockType}>{content()}</div>;
 }
