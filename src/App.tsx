@@ -14,6 +14,7 @@ function App() {
     const [data, setData] = useState<dummyData[]>([]);
     const [columns, setColumns] = useState<number>(5);
     const [dataLength, setDataLength] = useState<number>(80);
+    const [rando, setRando] = useState(0);
 
     const generateDummyData = (length: number): dummyData[] => {
         return Array(length)
@@ -40,6 +41,13 @@ function App() {
     return (
         <>
             <h1>RG Masonry</h1>
+            <button
+                onClick={(e) => {
+                    setRando(Math.random());
+                }}
+            >
+                JUST CHANGE
+            </button>
             <div className="control">
                 <div className="fieldset">
                     <label className="field-label" htmlFor="columns">

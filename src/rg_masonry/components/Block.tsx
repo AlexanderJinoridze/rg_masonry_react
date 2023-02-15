@@ -6,15 +6,15 @@ interface blockElement {
 }
 
 export default function Block({ blockType, items }: blockElement) {
-    const blocks = useMemo(() => {
-        return items.map((item) => {
-            return (
-                <div key={item.props.id} className="item">
-                    {item}
-                </div>
-            );
-        });
-    }, [items]);
-
-    return <div className={blockType}>{blocks}</div>;
+    return (
+        <div className={blockType}>
+            {items.map((item) => {
+                return (
+                    <div key={item.props.id} className="item">
+                        {item}
+                    </div>
+                );
+            })}
+        </div>
+    );
 }
