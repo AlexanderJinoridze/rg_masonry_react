@@ -9,7 +9,6 @@ interface RGMasonryProps {
 }
 
 export default function RGMasonry({ columns, children }: RGMasonryProps): any {
-    console.log("RGMASONRY RERENDER");
     const [gridMap, setGridMap] = useState<string[]>([]);
     const [width, setWidth] = useState(0);
 
