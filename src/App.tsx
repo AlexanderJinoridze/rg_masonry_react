@@ -7,38 +7,39 @@ function CustomItem({ id, title }: any): ReactElement {
     return <div id={id}>{title}</div>;
 }
 
-function App() {
-    const [data, setData] = useState<dummyData[]>([]);
-    const [columns, setColumns] = useState<number>(5);
-    const [dataLength, setDataLength] = useState<number>(80);
+function generateDummyData(length: number): dummyData[] {
+    return Array(length)
+        .fill("")
+        .map((_, i) => {
+            return { id: i, title: `#${i + 1}` };
+        });
+}
 
-    const generateDummyData = (length: number): dummyData[] => {
-        return Array(length)
-            .fill("")
-            .map((_, i) => {
-                return { id: i, title: `#${i + 1}` };
-            });
-    };
+const defaultDataLength = 80;
+const defaultColumnCount = 5;
+
+function App() {
+    const [data, setData] = useState<dummyData[]>(
+        generateDummyData(defaultDataLength)
+    );
+    const [columns, setColumns] = useState<number>(defaultColumnCount);
+    const [dataLength, setDataLength] = useState<number>(defaultDataLength);
 
     const handleColumnChange = (e: any) =>
         setColumns(parseInt(e?.target?.value));
 
-    const handkeItemChange = (e: any) => {
+    const handleItemChange = (e: any) => {
         let newDataLength = parseInt(e?.target?.value);
 
         setDataLength(newDataLength);
         setData(generateDummyData(newDataLength));
     };
 
-    useEffect(() => {
-        setData(generateDummyData(dataLength));
-    }, []);
-
     const datas = useMemo(() => {
         return data.map((dataItem: object, i) => {
             return <CustomItem key={i} {...dataItem} />;
         });
-    }, [data]);
+    }, [dataLength]);
 
     return (
         <>
@@ -67,7 +68,7 @@ function App() {
                         className="input"
                         min={1}
                         value={dataLength}
-                        onChange={handkeItemChange}
+                        onChange={handleItemChange}
                     />
                 </div>
                 <div className="fieldset">

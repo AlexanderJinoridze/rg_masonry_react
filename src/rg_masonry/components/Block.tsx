@@ -1,5 +1,4 @@
 import React, { ReactElement, useMemo } from "react";
-
 interface blockElement {
     blockType: string;
     items: ReactElement[];

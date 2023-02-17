@@ -9,18 +9,24 @@ interface RGMasonryProps {
 }
 
 export default function RGMasonry({ columns, children }: RGMasonryProps): any {
-    const [gridMap, setGridMap] = useState<string[]>([]);
-    const [width, setWidth] = useState(0);
+    console.log("GRID");
+    // const [gridMap, setGridMap] = useState<string[]>(
+    //     generateGridMap(columns, children.length)
+    // );
+    // const [width, setWidth] = useState(columns * 150);
 
-    useEffect(() => {
-        setGridMap(generateGridMap(columns, children.length));
-        setWidth(columns * 150);
-    }, [columns, children.length]);
+    // useEffect(() => {
+    //     setGridMap();
+    // }, [columns, children.length]);
+
+    // useEffect(() => {
+    //     setWidth();
+    // }, [columns]);
 
     const blocks = useMemo(() => {
         let currentItemId = 0;
 
-        return gridMap.map((blockType) => {
+        return generateGridMap(columns, children.length).map((blockType) => {
             let increment = 0;
 
             if (["square", "vertical"].includes(blockType)) {
@@ -42,10 +48,10 @@ export default function RGMasonry({ columns, children }: RGMasonryProps): any {
                 />
             );
         });
-    }, [gridMap]);
+    }, [columns, children.length]);
 
     return (
-        <div id="app" style={{ width }}>
+        <div id="app" style={{ width: columns * 150 }}>
             {blocks}
         </div>
     );
