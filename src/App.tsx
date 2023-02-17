@@ -28,7 +28,7 @@ function App() {
         setColumns(parseInt(e?.target?.value));
     });
 
-    const handkeItemChange = useEvent((e: any) => {
+    const handleItemChange = useEvent((e: any) => {
         setDataLength(parseInt(e?.target?.value));
         // let newDataLength = parseInt(e?.target?.value);
         //setData(generateDummyData(newDataLength));
@@ -71,7 +71,7 @@ function App() {
                         className="input"
                         min={1}
                         value={dataLength}
-                        onChange={handkeItemChange}
+                        onChange={handleItemChange}
                     />
                 </div>
                 <div className="fieldset">
