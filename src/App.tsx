@@ -22,7 +22,7 @@ function App() {
     //     generateDummyData(defaultDataLength)
     // );
     const [columns, setColumns] = useState<number>(5);
-    const [dataLength, setDataLength] = useState<number>(10000);
+    const [dataLength, setDataLength] = useState<number>(80);
 
     const handleColumnChange = useEvent((e: any) => {
         setColumns(parseInt(e?.target?.value));
