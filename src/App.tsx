@@ -2,43 +2,47 @@ import { ReactElement, useEffect, useMemo, useState } from "react";
 import Header from "./Header";
 import RGMasonry from "./rg_masonry";
 import { dummyData } from "./types";
+import useEvent from "./hooks/useEvent";
 
 function CustomItem({ id, title }: any): ReactElement {
     return <div id={id}>{title}</div>;
 }
 
+const generateDummyData = (length: number): dummyData[] => {
+    return Array(length)
+        .fill("")
+        .map((_, i) => {
+            return { id: i, title: `#${i + 1}` };
+        });
+};
+
 function App() {
-    const [data, setData] = useState<dummyData[]>([]);
+    console.log("APP");
+    // const [data, setData] = useState<dummyData[]>(
+    //     generateDummyData(defaultDataLength)
+    // );
     const [columns, setColumns] = useState<number>(5);
-    const [dataLength, setDataLength] = useState<number>(80);
+    const [dataLength, setDataLength] = useState<number>(10000);
 
-    const generateDummyData = (length: number): dummyData[] => {
-        return Array(length)
-            .fill("")
-            .map((_, i) => {
-                return { id: i, title: `#${i + 1}` };
-            });
-    };
-
-    const handleColumnChange = (e: any) =>
+    const handleColumnChange = useEvent((e: any) => {
         setColumns(parseInt(e?.target?.value));
+    });
 
-    const handkeItemChange = (e: any) => {
-        let newDataLength = parseInt(e?.target?.value);
+    const handkeItemChange = useEvent((e: any) => {
+        setDataLength(parseInt(e?.target?.value));
+        // let newDataLength = parseInt(e?.target?.value);
+        //setData(generateDummyData(newDataLength));
+    });
 
-        setDataLength(newDataLength);
-        setData(generateDummyData(newDataLength));
-    };
+    // useEffect(() => {
+    //     setData(generateDummyData(dataLength));
+    // }, []);
 
-    useEffect(() => {
-        setData(generateDummyData(dataLength));
-    }, []);
-
-    const datas = useMemo(() => {
-        return data.map((dataItem: object, i) => {
+    const datas = () => {
+        return generateDummyData(dataLength).map((dataItem: object, i) => {
             return <CustomItem key={i} {...dataItem} />;
         });
-    }, [data]);
+    };
 
     return (
         <>
@@ -91,7 +95,7 @@ function App() {
                     </div>
                 </div>
             </div>
-            <RGMasonry columns={columns}>{datas}</RGMasonry>
+            <RGMasonry columns={columns}>{datas()}</RGMasonry>
         </>
     );
 }
