@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useMemo, useState } from "react";
 
 import Block from "./Block";
-import generateGridMap from "../gridMapGenerate";
+import generateGridMap from "../gridMapGenerator";
 
 interface RGMasonryProps {
     columns: number;
@@ -9,17 +9,6 @@ interface RGMasonryProps {
 }
 
 export default function RGMasonry({ columns, children }: RGMasonryProps): any {
-    console.log("GRID");
-    // const [gridMap, setGridMap] = useState<string[]>(() =>
-    //     generateGridMap(columns, children.length)
-    // );
-    // const [width, setWidth] = useState(() => columns * 150);
-
-    // useEffect(() => {
-    //     setGridMap();
-    //     setWidth();
-    // }, [columns, children.length]);
-
     const blocks = () => {
         let currentItemId = 0;
 

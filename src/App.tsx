@@ -1,8 +1,6 @@
 import { ReactElement, useEffect, useMemo, useState } from "react";
-import Header from "./Header";
 import RGMasonry from "./rg_masonry";
 import { dummyData } from "./types";
-import useEvent from "./hooks/useEvent";
 
 function CustomItem({ id, title }: any): ReactElement {
     return <div id={id}>{title}</div>;
@@ -17,26 +15,16 @@ const generateDummyData = (length: number): dummyData[] => {
 };
 
 function App() {
-    console.log("APP");
-    // const [data, setData] = useState<dummyData[]>(
-    //     generateDummyData(defaultDataLength)
-    // );
     const [columns, setColumns] = useState<number>(5);
     const [dataLength, setDataLength] = useState<number>(80);
 
-    const handleColumnChange = useEvent((e: any) => {
+    const handleColumnChange = (e) => {
         setColumns(parseInt(e?.target?.value));
-    });
+    };
 
-    const handleItemChange = useEvent((e: any) => {
+    const handleItemChange = (e) => {
         setDataLength(parseInt(e?.target?.value));
-        // let newDataLength = parseInt(e?.target?.value);
-        //setData(generateDummyData(newDataLength));
-    });
-
-    // useEffect(() => {
-    //     setData(generateDummyData(dataLength));
-    // }, []);
+    };
 
     const datas = () => {
         return generateDummyData(dataLength).map((dataItem: object, i) => {
@@ -46,7 +34,7 @@ function App() {
 
     return (
         <>
-            <Header />
+            <h1>RG Masonry</h1>
             <div className="control">
                 <div className="fieldset">
                     <label className="field-label" htmlFor="columns">

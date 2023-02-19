@@ -6,17 +6,17 @@ const getRandomNumber = (from = 0, to = 1) => {
     return Math.floor(Math.random() * (to - from)) + from;
 };
 
-const getRandomElementOf = (array: any[]) => {
+const getRandomElementOf = (array) => {
     return array[getRandomNumber(0, array.length)];
 };
 
-const getIndexesOf = (value: any, array: any[]) => {
+const getIndexesOf = (value, array) => {
     return array
-        .map((elem: any, index: number) => elem === value && index)
-        .filter((elem: any) => elem !== false);
+        .map((elem, index: number) => elem === value && index)
+        .filter((elem) => elem !== false);
 };
 
-const eitherOr = (firstStatement: any, secondStatement: any) => {
+const eitherOr = (firstStatement, secondStatement) => {
     return Math.random() < 0.5 ? firstStatement : secondStatement;
 };
 
@@ -37,7 +37,7 @@ const isTwoItemBlock = (blockType: block) => {
 };
 
 const evaluateSpaceTaken = (line: block[]) => {
-    return line.reduce((accumulator: number, blockType: any) => {
+    return line.reduce((accumulator: number, blockType) => {
         if (isFullWidthBlock(blockType)) {
             return (accumulator = accumulator + 2);
         } else {
@@ -165,16 +165,16 @@ function eliminateLeftover(leftover: number, lines: block[][]) {
 
 export default function generateGridMap(columns: number, totalItems: number) {
     const blockTypes = ["square", "horizontals", "vertical", "double"];
-    const resultMap = [];
+    const resultMap: block[] = [];
 
     let itemsAbleToSet = 0;
     let itemsLeft = totalItems;
 
-    let lines = [];
+    let lines: block[][] = [];
 
     while (itemsLeft > 0) {
         let freeSpaceOfLine = columns;
-        let line = [];
+        let line: block[] = [];
 
         while (freeSpaceOfLine > 0) {
             let selectedBlockType = getRandomElementOf(blockTypes);
